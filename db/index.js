@@ -113,6 +113,17 @@ goodsdb.count_packet = (params)=>{
     })
 };
 
+goodsdb.packet_get = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT COUNT(id) AS id_count FROM transaction where  created_at >= ? and  created_at <= ? GROUP BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 goodsdb.expense_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `expense` (`description`, `date`, `amount`) VALUES (?)"
