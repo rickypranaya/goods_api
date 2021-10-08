@@ -1,22 +1,22 @@
 const mysql = require('mysql');
 
-const pool = mysql.createPool({
-    connectionLimit : 10,
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database:'goods',
-    port: '3306'
-})
-
 // const pool = mysql.createPool({
 //     connectionLimit : 10,
-//     host: 'us-cdbr-east-04.cleardb.com',
-//     user: 'b5eee8daf2670d',
-//     password: '45d6b9ad',
-//     database:'heroku_dfcfd85eed3cac5',
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password',
+//     database:'goods',
 //     port: '3306'
 // })
+
+const pool = mysql.createPool({
+    connectionLimit : 10,
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: 'b0d1352197f72a',
+    password: '09bca304',
+    database:'heroku_e7747223c5bbffd',
+    port: '3306'
+})
 
 let goodsdb ={};
 
