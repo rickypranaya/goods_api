@@ -127,7 +127,7 @@ goodsdb.packet_get = (params)=>{
 
 goodsdb.modal_get = (params)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT total_modal AS modal, marketplace FROM transaction where  created_at >= ? and  created_at <= ? GROUP BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
+        pool.query('SELECT total_modal AS modal, marketplace FROM transaction where  created_at >= ? and  created_at <= ? ORDER BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
             if (err){
                 return reject (err);
             } 
