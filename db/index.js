@@ -136,6 +136,17 @@ goodsdb.modal_get = (params)=>{
     })
 };
 
+goodsdb.penjualan_get = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT total_penjualan AS penjualan, marketplace FROM transaction where  created_at >= ? and  created_at <= ? ORDER BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 goodsdb.expense_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `expense` (`description`, `date`, `amount`) VALUES (?)"

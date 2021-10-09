@@ -372,4 +372,30 @@ router.post("/modal_get", async (req,res, next)=>{
     }
 });
 
+
+router.post("/penjualan_get", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.penjualan_get(params);   
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'no penjualan',
+            });
+        } else {
+            res.json({
+                status : 200,
+                data : results,
+                message : 'penjualan retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
 module.exports = router;
