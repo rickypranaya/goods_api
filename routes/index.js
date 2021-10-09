@@ -399,4 +399,30 @@ router.post("/expense_get_monthly", async (req,res, next)=>{
     }
 });
 
+router.post("/search_get", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.search_get(params);   
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'no transaction',
+            });
+        } else {
+            res.json({
+                status : 200,
+                data : results,
+                message : 'transaction retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
+
 module.exports = router;

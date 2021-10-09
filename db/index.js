@@ -255,4 +255,17 @@ goodsdb.user_get = ()=>{
     })
 };
 
+goodsdb.search_get = (params)=>{
+    keyword = '%' + params.keyword+ '%';
+
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM transaction WHERE fullname LIKE N? AND marketplace = ? ORDER BY created_at DESC' ,[keyword, params.marketplace ],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = goodsdb;
