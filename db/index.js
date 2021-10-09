@@ -268,4 +268,17 @@ goodsdb.search_get = (params)=>{
     })
 };
 
+goodsdb.expense_search = (params)=>{
+    var keyword = '%' + params.keyword+ '%';
+
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM expense WHERE description LIKE N? ORDER BY date DESC' ,[keyword],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = goodsdb;
