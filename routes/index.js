@@ -373,4 +373,30 @@ router.post("/report_get", async (req,res, next)=>{
     }
 });
 
+router.post("/expense_get_monthly", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.expense_get_monthly(params);   
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'no expense',
+            });
+        } else {
+            res.json({
+                status : 200,
+                data : results,
+                message : 'expense retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
+
 module.exports = router;

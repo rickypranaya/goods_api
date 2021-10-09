@@ -124,6 +124,17 @@ goodsdb.packet_get = (params)=>{
     })
 };
 
+goodsdb.expense_get_monthly = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT amount AS pengeluaran FROM expense where created_at >= ? and  created_at <= ? ', [ params.start_month, params.end_month],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 goodsdb.report_get = (params)=>{
     return new Promise((resolve,reject)=>{
         pool.query('SELECT total_modal AS modal, total_penjualan AS penjualan, total_profit AS profit, delivery_fee AS kurir, additional_cost AS tambahan, pm_pro AS power_merchant, marketplace FROM transaction where  created_at >= ? and  created_at <= ? ORDER BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
