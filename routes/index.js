@@ -452,4 +452,31 @@ router.post("/expense_search", async (req,res, next)=>{
     }
 });
 
+router.post("/product_search", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.product_search(params);   
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'no product',
+            });
+        } else {
+            res.json({
+                status : 200,
+                data : results,
+                message : 'product retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
+
+
 module.exports = router;

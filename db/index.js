@@ -281,4 +281,17 @@ goodsdb.expense_search = (params)=>{
     })
 };
 
+goodsdb.product_search = (params)=>{
+    var keyword = '%' + params.keyword+ '%';
+
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM product WHERE name LIKE N? ORDER BY name ASC' ,[keyword],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 module.exports = goodsdb;
