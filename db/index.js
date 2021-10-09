@@ -210,7 +210,7 @@ goodsdb.product_add = (params)=>{
 
 goodsdb.product_get = ()=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM product ORDER BY id DESC' ,(err,results)=>{
+        pool.query('SELECT * FROM product ORDER BY name ASC' ,(err,results)=>{
             if (err){
                 return reject (err);
             } 
