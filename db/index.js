@@ -147,6 +147,17 @@ goodsdb.penjualan_get = (params)=>{
     })
 };
 
+goodsdb.profit_get = (params)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT total_profit AS profit, marketplace FROM transaction where  created_at >= ? and  created_at <= ? ORDER BY marketplace', [ params.start_month, params.end_month],(err,results)=>{
+            if (err){
+                return reject (err);
+            } 
+            return resolve (results);
+        })
+    })
+};
+
 goodsdb.expense_add = (params)=>{
     return new Promise((resolve,reject)=>{
         let sql = "INSERT INTO `expense` (`description`, `date`, `amount`) VALUES (?)"

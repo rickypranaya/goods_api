@@ -372,7 +372,6 @@ router.post("/modal_get", async (req,res, next)=>{
     }
 });
 
-
 router.post("/penjualan_get", async (req,res, next)=>{
     const params = req.body;
     let results;
@@ -398,4 +397,31 @@ router.post("/penjualan_get", async (req,res, next)=>{
         res.status(500).send(e);
     }
 });
+
+router.post("/profit_get", async (req,res, next)=>{
+    const params = req.body;
+    let results;
+
+    try
+    {
+        results = await db.profit_get(params);   
+        if (!results.length){
+            res.json({
+                status : 400,
+                message : 'no profit',
+            });
+        } else {
+            res.json({
+                status : 200,
+                data : results,
+                message : 'profit retrieve success'
+            });
+        }
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e);
+    }
+});
+
 module.exports = router;
