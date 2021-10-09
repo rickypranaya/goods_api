@@ -259,7 +259,7 @@ goodsdb.search_get = (params)=>{
     var keyword = '%' + params.keyword+ '%';
 
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM transaction WHERE fullname LIKE N? AND marketplace = ? ORDER BY created_at DESC' ,[keyword, params.marketplace ],(err,results)=>{
+        pool.query('SELECT * FROM transaction WHERE customer_name LIKE N? AND marketplace = ? ORDER BY created_at DESC' ,[keyword, params.marketplace ],(err,results)=>{
             if (err){
                 return reject (err);
             } 
