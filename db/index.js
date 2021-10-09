@@ -126,7 +126,7 @@ goodsdb.packet_get = (params)=>{
 
 goodsdb.expense_get_monthly = (params)=>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT amount AS pengeluaran FROM expense where created_at >= ? and  created_at <= ? ', [ params.start_month, params.end_month],(err,results)=>{
+        pool.query('SELECT amount AS pengeluaran FROM expense where date >= ? and  date <= ? ', [ params.start_month, params.end_month],(err,results)=>{
             if (err){
                 return reject (err);
             } 
