@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors())
 app.use(express.urlencoded({extended: true}));
-
+//test
 // routing
 const apiRouter = require('./routes');
 app.use('/api', apiRouter);
